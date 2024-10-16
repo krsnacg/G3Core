@@ -8,13 +8,13 @@ from gestion_paquete.models import DocumentoControl, generate_unique, generate_u
 class Pedido(models.Model):
     order_state = [('unconfirmed', 'Unconfirmed'), ('confirmed', 'Confirmed'), ('delivered', 'Delivered')]
     num_pedido = models.CharField(max_length=32, validators=[MinLengthValidator(32), MaxLengthValidator(32)],default=generate_unique, unique=True)
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100) # Eliminar campo, se puede obtener de la tabla cliente
+    apellido = models.CharField(max_length=100) # Eliminar campo, se puede obtener de la tabla cliente
     #email = models.EmailField()
     telefono = models.CharField(max_length=20)
-    direccion = models.CharField(max_length=100)
-    dni_emisor = models.CharField(max_length=8,validators=[MinLengthValidator(8), MaxLengthValidator(8)])
-    dni_receptor = models.CharField(max_length=8,validators=[MinLengthValidator(8), MaxLengthValidator(8)])
+    direccion = models.CharField(max_length=100) # Eliminar campo, se puede obtener de la tabla cliente
+    dni_emisor = models.CharField(max_length=8,validators=[MinLengthValidator(8), MaxLengthValidator(8)]) # Eliminar campo, se puede obtener de la tabla cliente
+    dni_receptor = models.CharField(max_length=8,validators=[MinLengthValidator(8), MaxLengthValidator(8)]) # Eliminar campo, se puede obtener de la tabla cliente
     fecha = models.DateTimeField(auto_now_add=True)
     state = models.CharField(max_length=20, choices=order_state, default='unconfirmed')
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='pedidos')
@@ -105,9 +105,9 @@ class TablaPrecios(models.Model):
     
 class Comprobante(models.Model):
     num_comprobante = models.CharField(max_length=8, validators=[MinLengthValidator(8), MaxLengthValidator(8)], default=generate_unique8, unique=True)
-    nombre_cliente = models.CharField(max_length=100)
-    apellido_cliente = models.CharField(max_length=100)
-    dni_cliente = models.CharField(max_length=8,validators=[MinLengthValidator(8), MaxLengthValidator(8)])
+    nombre_cliente = models.CharField(max_length=100) # Considerar eliminar campo, se puede obtener de la tabla cliente
+    apellido_cliente = models.CharField(max_length=100) # Considerar eliminar campo, se puede obtener de la tabla cliente
+    dni_cliente = models.CharField(max_length=8,validators=[MinLengthValidator(8), MaxLengthValidator(8)]) # Considerar eliminar campo, se puede obtener de la tabla cliente
     fecha = models.DateTimeField(auto_now_add=True)
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     pedido = models.OneToOneField(Pedido, on_delete=models.CASCADE, related_name='comprobante')
