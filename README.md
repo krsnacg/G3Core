@@ -1,6 +1,7 @@
-# Backend Core Project
+# Bussiness App Project
 
-This repository contains a backend core writen with django and a front app developed with angular.
+This repository contains a backend app writen with Django, django rest framework and jwt tokens.
+The frontend app is developed with the framework Angular v17
 
 ## Installation
 
